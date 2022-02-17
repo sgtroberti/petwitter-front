@@ -5,16 +5,16 @@ import AuthStatus from "./AuthStatus";
 function Layout() {
   return (
     <div>
-      <AuthStatus />
+      {/* <AuthStatus /> */}
 
-      <ul>
+      {/* <ul>
         <li>
           <Link to="/">Public Page</Link>
         </li>
         <li>
           <Link to="/protected">Protected Page</Link>
         </li>
-      </ul>
+      </ul> */}
 
       <Outlet />
     </div>

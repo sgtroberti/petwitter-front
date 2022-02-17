@@ -5,24 +5,34 @@ import Layout from "./components/Layout";
 import PublicPage from "./routes/PublicPage";
 import ProtectedPage from "./routes/ProtectedPage";
 
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+
+const theme = extendTheme({
+  fonts: {
+    text: "Open Sans",
+  },
+});
+
 function App() {
   return (
-    <AuthProvider>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<PublicPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/protected"
-            element={
-              <RequireAuth>
-                <ProtectedPage />
-              </RequireAuth>
-            }
-          />
-        </Route>
-      </Routes>
-    </AuthProvider>
+    <ChakraProvider theme={theme}>
+      <AuthProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<PublicPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/protected"
+              element={
+                <RequireAuth>
+                  <ProtectedPage />
+                </RequireAuth>
+              }
+            />
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </ChakraProvider>
   );
 }
 

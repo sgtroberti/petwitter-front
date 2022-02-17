@@ -1,38 +1,41 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
+import LoginPage from "../components/LoginPage";
 
 function Login() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { signin } = useAuth();
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  // const { signin } = useAuth();
 
-  const from = location.state?.from?.pathname || "/";
+  // const from = location.state?.from?.pathname || "/";
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  // async function handleSubmit(event) {
+  //   event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get("email");
-    const password = formData.get("password");
+  //   const formData = new FormData(event.currentTarget);
+  //   const email = formData.get("email");
+  //   const password = formData.get("password");
 
-    await signin({ email, password });
-    navigate(from, { replace: true });
-  }
+  //   await signin({ email, password });
+  //   navigate(from, { replace: true });
+  // }
 
   return (
-    <div>
-      <p>Você precisa estar logado para ver a página {from}</p>
+    <LoginPage />
 
-      <form onSubmit={handleSubmit}>
-        <label>
-          email: <input name="email" type="text" />
-        </label>{" "}
-        <label>
-          senha: <input name="password" type="password" />
-        </label>{" "}
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    // <div>
+    //   <p>Você precisa estar logado para ver a página {from}</p>
+
+    //   <form onSubmit={handleSubmit}>
+    //     <label>
+    //       email: <input name="email" type="text" />
+    //     </label>{" "}
+    //     <label>
+    //       senha: <input name="password" type="password" />
+    //     </label>{" "}
+    //     <button type="submit">Login</button>
+    //   </form>
+    // </div>
   );
 }
 
