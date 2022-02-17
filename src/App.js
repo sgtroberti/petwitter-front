@@ -11,6 +11,14 @@ const theme = extendTheme({
   fonts: {
     text: "Open Sans",
   },
+  colors: {
+    cyan: {
+      400: "#00ACC1",
+    },
+    gray: {
+      800: "#424242",
+    },
+  },
 });
 
 function App() {
