@@ -6,6 +6,7 @@ import PublicPage from "./routes/PublicPage";
 import ProtectedPage from "./routes/ProtectedPage";
 import SignIn from "./routes/SignIn";
 import Feed from "./routes/Feed";
+import Profile from "./routes/Profile";
 
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
@@ -39,8 +40,8 @@ function App() {
               </RequireAuth>
             }
           >
-            <Route path="/" element={<PublicPage />} />
-            <Route path="/feed" element={<Feed />} />
+            <Route path="/" element={<Feed />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/protected" element={<ProtectedPage />} />
           </Route>
         </Routes>

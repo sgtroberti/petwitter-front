@@ -34,7 +34,7 @@ const Post = ({ image, name, url, time, post }) => {
         </Flex>
         <Text
           color="#141619"
-          letter-spacing="-0.261081px"
+          letterSpacing="-0.261081px"
           fontSize="14px"
           lineHeight="18px"
         >

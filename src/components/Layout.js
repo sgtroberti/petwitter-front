@@ -1,6 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import { Box, Button, Image, Flex } from "@chakra-ui/react";
 import { useState } from "react";
+import Menu from "./Menu";
 
 import AuthStatus from "./AuthStatus";
 
@@ -17,15 +18,8 @@ function Layout() {
         position="fixed"
         w="100%"
       >
-        <Button
-          _active={{ backgroundColor: "none" }}
-          _focus={{ outline: "none" }}
-          variant="unstyled"
-          position="fixed"
-          p="16px"
-        >
-          <Image src="./img/layout/burger_button.svg" alt="menu" />
-        </Button>
+        <Menu />
+
         <Image
           src="./img/layout/logo.png"
           alt="logo"
