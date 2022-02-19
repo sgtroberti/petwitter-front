@@ -4,6 +4,7 @@ import { useState } from "react";
 import Menu from "./Menu";
 
 import AuthStatus from "./AuthStatus";
+import NewPetweet from "./NewPetweet";
 
 function Layout() {
   const [isLoading, setIsLoading] = useState(true);
@@ -56,16 +57,8 @@ function Layout() {
           w="35px"
           h="35px"
         />
-        <Image
-          position="fixed"
-          left="calc(100% - 72px)"
-          top="calc(100vh - 78px)"
-          src="img/addPost.png"
-          w="56px"
-          h="56px"
-          alt="addPost"
-          zIndex="2"
-        />
+
+        <NewPetweet />
       </Flex>
     </div>
   );
