@@ -18,6 +18,7 @@ function Layout() {
         backgroundColor="white"
         position="fixed"
         w="100%"
+        zIndex="1"
       >
         <Menu />
 
