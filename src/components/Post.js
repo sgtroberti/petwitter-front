@@ -2,7 +2,11 @@ import { Flex, Image, Text } from "@chakra-ui/react";
 
 const Post = ({ image, name, url, time, post }) => {
   return (
-    <Flex p="20px 16px" border="1px solid #EEEEEE">
+    <Flex
+      p="20px 16px"
+      border={["1px solid #EEEEEE", "none"]}
+      borderBottom={["none", "1px solid #EEEEEE"]}
+    >
       <Image
         src={image}
         alt="avatar"

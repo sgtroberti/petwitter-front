@@ -17,6 +17,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link as LinkRouter } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import PetPawIcon from "../components/PetPawnIcon";
 
 function SignIn() {
   const [show, setShow] = useState(false);
@@ -39,17 +40,39 @@ function SignIn() {
   return (
     <Flex flexDirection={["column", "row"]}>
       <Flex
-        backgroundImage="img/sign_in/doggo.png"
+        backgroundImage={["img/login_dog.png", "img/dogo_desktop.png"]}
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
-        w="100%"
+        w={["100%", "60%"]}
         flexDirection="column"
-        display={["flex", "none"]}
+        justifyContent="center"
+        display={"flex"}
+        h={["auto", "100vh"]}
       >
-        <Image src="img/pet_paw.svg" alt="paw" m="46px 0 44px 32px" w="54px" />
+        <Image
+          src="img/pet_paw.svg"
+          alt="paw"
+          m="46px 0 44px 32px"
+          w="54px"
+          display={["flex", "none"]}
+        />
+        <Image
+          display={["none", "flex"]}
+          src="img/logo_desktop.png"
+          p="0 180px"
+        />
       </Flex>
-      <Wrapper>
+      <Flex
+        p={["30px 32px", "72px"]}
+        maxW={["400px", "30%"]}
+        justifyContent="center"
+        display="flex"
+        alignItems="center"
+      >
         <Flex flexDirection="column">
+          <Flex display={["none", "flex"]} mb="26px">
+            <PetPawIcon fill="#00ACC1" />
+          </Flex>
           <Heading as="h3" color="gray.900" fontSize="24px" fontWeight="600">
             Cadastro
           </Heading>
@@ -141,8 +164,13 @@ function SignIn() {
             </Text>
           </form>
         </Flex>
-      </Wrapper>
-      <Image p="0 90px 10px 90px" src="./img/logo.png" alt="logo" />
+      </Flex>
+      <Image
+        p="0 90px 10px 90px"
+        src="./img/logo.png"
+        alt="logo"
+        display={["flex", "none"]}
+      />
     </Flex>
   );
 }

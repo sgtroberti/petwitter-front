@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import PetPawIcon from "../components/PetPawnIcon";
 
 function Login() {
   const [show, setShow] = useState(false);
@@ -50,14 +51,28 @@ function Login() {
   return (
     <Flex flexDirection={["column", "row"]}>
       <Flex
-        backgroundImage="img/login_dog.png"
+        backgroundImage={["img/login_dog.png", "img/dogo_desktop.png"]}
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
-        w="100%"
+        w={["100%", "60%"]}
         flexDirection="column"
-        display={["flex", "none"]}
+        justifyContent="center"
+        display={"flex"}
+        h={["auto", "100vh"]}
       >
-        <Image src="img/pet_paw.svg" alt="paw" mt="46px" ml="32px" w="54px" />
+        <Image
+          src="img/pet_paw.svg"
+          alt="paw"
+          mt="46px"
+          ml="32px"
+          w="54px"
+          display={["flex", "none"]}
+        />
+        <Image
+          display={["none", "flex"]}
+          src="img/logo_desktop.png"
+          p="0 180px"
+        />
         <Text
           fontSize="36px"
           fontWeight="700"
@@ -66,11 +81,30 @@ function Login() {
           ml="26px"
           mt="40px"
           mb="25px"
+          display={["flex", "none"]}
         >
           Comece agora. Conecte-se já.
         </Text>
       </Flex>
-      <Flex flexDirection="column" p="30px 32px">
+      <Flex
+        flexDirection="column"
+        p={["30px 32px", "72px"]}
+        maxW={["400px", "30%"]}
+        justifyContent="center"
+      >
+        <Flex display={["none", "flex"]} mb="26px">
+          <PetPawIcon fill="#00ACC1" />
+        </Flex>
+
+        <Text
+          display={["none", "flex"]}
+          color="#00ACC1"
+          fontWeight="700"
+          fontSize="36px"
+          mb="32px"
+        >
+          Comece agora. Conecte-se já.
+        </Text>
         <Heading as="h3" fontWeight="600" fontSize="24px">
           Login
         </Heading>
@@ -136,7 +170,12 @@ function Login() {
           </Text>
         </form>
       </Flex>
-      <Image p="57px 90px 10px" src="./img/logo.png" alt="logo" />
+      <Image
+        p="57px 90px 10px"
+        src="./img/logo.png"
+        alt="logo"
+        display={["block", "none"]}
+      />
     </Flex>
   );
 }

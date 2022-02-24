@@ -1,22 +1,26 @@
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
   useDisclosure,
   Button,
-  Input,
   Image,
   Textarea,
+  Text,
+  Flex,
 } from "@chakra-ui/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const NewPetweet = () => {
+  const [tweet, setTweet] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
+
+  const handleChange = (event) => {
+    setTweet(event.target.value);
+  };
 
   return (
     <>
@@ -53,15 +57,26 @@ const NewPetweet = () => {
             >
               Cancelar
             </Button>
-            <Button
-              colorScheme="cyan"
-              boxShadow="2px 4px 4px rgba(0, 0, 0, 0.09)"
-              borderRadius="10px"
-              p="8px"
-              color="white"
-            >
-              Petwittar
-            </Button>
+            <Flex display="flex" alignItems="center">
+              <Text
+                color="#828282"
+                fontWeight="400"
+                fontSize="14px"
+                lineHeight="24px"
+                mr="8px"
+              >
+                {tweet ? tweet.length : 0}/140
+              </Text>
+              <Button
+                colorScheme="cyan"
+                boxShadow="2px 4px 4px rgba(0, 0, 0, 0.09)"
+                borderRadius="10px"
+                p="8px"
+                color="white"
+              >
+                Petwittar
+              </Button>
+            </Flex>
           </DrawerHeader>
 
           <DrawerBody p="6px 16px" display="flex">
@@ -76,6 +91,8 @@ const NewPetweet = () => {
               variant="unstyled"
               placeholder="O que está acontecendo?"
               h="100%"
+              maxLength="140"
+              onChange={handleChange}
             />
           </DrawerBody>
         </DrawerContent>
