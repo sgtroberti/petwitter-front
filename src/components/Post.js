@@ -1,4 +1,5 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const Post = ({ image, name, url, time, post }) => {
   return (
@@ -20,7 +21,7 @@ const Post = ({ image, name, url, time, post }) => {
             fontWeight="bold"
             letterSpacing="-0.261081px"
           >
-            {name}
+            <Link to={`profile?user=${url.replace(/^./, "")}`}>{name}</Link>
           </Text>
           <Text
             color="gray.600"

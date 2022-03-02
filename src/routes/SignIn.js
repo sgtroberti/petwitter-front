@@ -11,6 +11,7 @@ import {
   InputRightElement,
   Button,
   FormHelperText,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import styled from "styled-components";
 import { useState } from "react";
@@ -18,23 +19,38 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Link as LinkRouter } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import PetPawIcon from "../components/PetPawnIcon";
+import instance from "../providers/client";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  name: yup.string().required("Campo obrigatório"),
+  username: yup.string().required("Campo obrigatório"),
+  email: yup.string().required("Campo obrigatório"),
+  password: yup
+    .string()
+    .required("Campo obrigatório")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
+      "Deve conter 8 caracteres, uma letra maiúscula, uma minúscula e um número"
+    ),
+});
 
 function SignIn() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const username = formData.get("username");
-    const password = formData.get("password");
-    const data = { name, email, username, password };
-
-    console.log(data);
+  const onSubmit = async (data) => {
+    await instance.post("/signup", data);
+    navigate("/", { replace: true });
   };
 
   return (
@@ -43,7 +59,7 @@ function SignIn() {
         backgroundImage={["img/login_dog.png", "img/dogo_desktop.png"]}
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
-        w={["100%", "60%"]}
+        w={["100%", "65%"]}
         flexDirection="column"
         justifyContent="center"
         display={"flex"}
@@ -58,7 +74,7 @@ function SignIn() {
         />
         <Image
           display={["none", "flex"]}
-          src="img/logo_desktop.png"
+          src="img/logo_desktop.svg"
           p="0 180px"
         />
       </Flex>
@@ -69,43 +85,76 @@ function SignIn() {
         display="flex"
         alignItems="center"
       >
-        <Flex flexDirection="column">
+        <Flex flexDirection="column" w={["400px", ""]}>
           <Flex display={["none", "flex"]} mb="26px">
             <PetPawIcon fill="#00ACC1" />
           </Flex>
           <Heading as="h3" color="gray.900" fontSize="24px" fontWeight="600">
             Cadastro
           </Heading>
-          <form onSubmit={handleSubmit}>
+          <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <FormControl pt="32px">
               <FormLabel fontSize="14px">Nome</FormLabel>
               <Input
+                {...register("name")}
                 name="name"
                 type="text"
                 placeholder="Nome"
                 focusBorderColor="cyan.400"
                 p="8px"
               />
+              {errors.name && (
+                <FormHelperText
+                  w={"100%"}
+                  fontSize="10px"
+                  color="gray.800"
+                  mt="4px"
+                >
+                  {errors.name.message}
+                </FormHelperText>
+              )}
             </FormControl>
             <FormControl pt="16px">
               <FormLabel fontSize="14px">E-mail</FormLabel>
               <Input
+                {...register("email")}
                 name="email"
                 type="email"
                 placeholder="E-mail"
                 focusBorderColor="cyan.400"
                 p="8px"
               />
+              {errors.email && (
+                <FormHelperText
+                  w={"100%"}
+                  fontSize="10px"
+                  color="gray.800"
+                  mt="4px"
+                >
+                  {errors.email.message}
+                </FormHelperText>
+              )}
             </FormControl>
             <FormControl pt="16px">
               <FormLabel fontSize="14px">Nome de usuário</FormLabel>
               <Input
+                {...register("username")}
                 name="username"
                 type="text"
                 placeholder="Ex.: billbulldog"
                 focusBorderColor="cyan.400"
                 p="8px"
               />
+              {errors.username && (
+                <FormHelperText
+                  w={"100%"}
+                  fontSize="10px"
+                  color="gray.800"
+                  mt="4px"
+                >
+                  {errors.username.message}
+                </FormHelperText>
+              )}
             </FormControl>
             <FormControl>
               <Flex
@@ -117,6 +166,7 @@ function SignIn() {
               </Flex>
               <InputGroup size="md">
                 <Input
+                  {...register("password")}
                   name="password"
                   pr="4.5rem"
                   type={show ? "text" : "password"}
@@ -136,9 +186,16 @@ function SignIn() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-              <FormHelperText fontSize="10px" color="gray.800" mt="4px">
-                Deve conter no mínimo um número e uma letra maiúscula
-              </FormHelperText>
+              {errors.password && (
+                <FormHelperText
+                  w={"100%"}
+                  fontSize="10px"
+                  color="gray.800"
+                  mt="4px"
+                >
+                  {errors.password.message}
+                </FormHelperText>
+              )}
             </FormControl>
             <Button
               type="submit"
@@ -148,7 +205,7 @@ function SignIn() {
               mt="40px"
               h="40px"
             >
-              Entrar
+              Cadastrar
             </Button>
             <Text fontSize="md" mt="24px">
               Já possui cadastro?
@@ -162,7 +219,7 @@ function SignIn() {
                 Faça login
               </Link>
             </Text>
-          </form>
+          </StyledForm>
         </Flex>
       </Flex>
       <Image
@@ -175,8 +232,8 @@ function SignIn() {
   );
 }
 
-const Wrapper = styled.div`
-  padding: 32px;
+const StyledForm = styled.form`
+  min-width: 300px;
 `;
 
 export default SignIn;

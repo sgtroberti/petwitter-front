@@ -1,14 +1,14 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useSearchParams } from "react-router-dom";
 import { AuthProvider, RequireAuth } from "./context/auth-context";
 import Login from "./routes/Login";
 import Layout from "./components/Layout";
-import PublicPage from "./routes/PublicPage";
-import ProtectedPage from "./routes/ProtectedPage";
 import SignIn from "./routes/SignIn";
 import Feed from "./routes/Feed";
 import Profile from "./routes/Profile";
+import User from "./routes/User";
 
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import Settings from "./routes/Settings";
 
 const theme = extendTheme({
   fonts: {
@@ -41,8 +41,9 @@ function App() {
             }
           >
             <Route path="/" element={<Feed />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/protected" element={<ProtectedPage />} />
+            <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/conf" element={<Settings />} />
+            <Route path="/user" element={<User />} />
           </Route>
         </Routes>
       </AuthProvider>

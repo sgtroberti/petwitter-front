@@ -14,7 +14,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { useRef } from "react";
-import { Link as LinkRouter } from "react-router-dom";
+import { Link as LinkRouter, useNavigate } from "react-router-dom";
 
 const Menu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -82,7 +82,7 @@ const Menu = () => {
               textAlign="center"
               textDecoration="none"
               as={LinkRouter}
-              to="/profile"
+              to="/user"
               p="4px"
               mb="8px"
             >

@@ -32,6 +32,8 @@ const NewPetweet = () => {
     };
     const response = await instance.post("/posts", data);
     console.log(response);
+    onClose();
+    window.location.reload(true);
   };
 
   return (

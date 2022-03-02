@@ -35,10 +35,3 @@ const CustomLink = ({ children, to, ...props }) => {
 };
 
 export default CustomLink;
-
-//(
-//     color: "#00ACC1",
-//     borderLeft: "2px solid #00ACC1",
-//     textDecoration: "none",
-//     backgroundColor: "#e5f7f9",
-//   )

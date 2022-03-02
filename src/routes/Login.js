@@ -7,6 +7,7 @@ import {
   Text,
   FormControl,
   FormLabel,
+  FormHelperText,
   Input,
   Heading,
   Link,
@@ -17,8 +18,28 @@ import {
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import PetPawIcon from "../components/PetPawnIcon";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  email: yup.string().required("Campo obrigatório"),
+  password: yup
+    .string()
+    .required("Campo obrigatório")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
+      "Deve conter 8 caracteres, uma letra maiúscula, uma minúscula e um número"
+    ),
+});
 
 function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const navigate = useNavigate();
@@ -27,26 +48,10 @@ function Login() {
 
   const from = location.state?.from?.pathname || "/";
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get("email");
-    const password = formData.get("password");
-
-    await signin({ email, password });
+  async function onSubmit(data) {
+    await signin(data);
     navigate(from, { replace: true });
   }
-
-  /* 
-  password: yup
-      .string()
-      .required()
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
-        "Deve conter 8 caracteres, uma letra maiúscula, uma minúscula e um número",
-      )
-*/
 
   return (
     <Flex flexDirection={["column", "row"]}>
@@ -54,7 +59,7 @@ function Login() {
         backgroundImage={["img/login_dog.png", "img/dogo_desktop.png"]}
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
-        w={["100%", "60%"]}
+        w={["100%", "65%"]}
         flexDirection="column"
         justifyContent="center"
         display={"flex"}
@@ -70,7 +75,7 @@ function Login() {
         />
         <Image
           display={["none", "flex"]}
-          src="img/logo_desktop.png"
+          src="img/logo_desktop.svg"
           p="0 180px"
         />
         <Text
@@ -89,7 +94,7 @@ function Login() {
       <Flex
         flexDirection="column"
         p={["30px 32px", "72px"]}
-        maxW={["400px", "30%"]}
+        maxW={["400px", "25%"]}
         justifyContent="center"
       >
         <Flex display={["none", "flex"]} mb="26px">
@@ -108,10 +113,11 @@ function Login() {
         <Heading as="h3" fontWeight="600" fontSize="24px">
           Login
         </Heading>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl pt="32px">
             <FormLabel fontSize="14px">E-mail</FormLabel>
             <Input
+              {...register("email")}
               name="email"
               placeholder="E-mail"
               focusBorderColor="cyan.400"
@@ -132,6 +138,7 @@ function Login() {
             </Flex>
             <InputGroup size="md">
               <Input
+                {...register("password")}
                 name="password"
                 pr="4.5rem"
                 type={show ? "text" : "password"}
@@ -139,12 +146,16 @@ function Login() {
                 focusBorderColor="cyan.400"
                 p="8px"
               />
+
               <InputRightElement width="4.5rem">
                 <Button variant="link" color="gray.800" onClick={handleClick}>
                   {show ? <ViewOffIcon /> : <ViewIcon />}
                 </Button>
               </InputRightElement>
             </InputGroup>
+            {errors.password && (
+              <FormHelperText>{errors.password.message}</FormHelperText>
+            )}
           </FormControl>
           <Button
             type="submit"
