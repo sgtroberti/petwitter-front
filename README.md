@@ -1,4 +1,5 @@
-# Boilerplate de front-end (SPA) da Otterwise
+# Petwitter - Frontend - Versão incial
+
 
 Esse boilerplate deve ser utilizado para realizar o desafio final do curso WEB Developer da Otterwise, mas também pode ser usado para criar qualquer aplicação SPA, pois é baseado no [Create React APP](https://create-react-app.dev/).
 
@@ -10,6 +11,9 @@ O boilerplate também conta uma integração de autenticação com o [boilerplat
 - [Styled components](https://styled-components.com/)
 - [React Router](https://reactrouter.com/)
 - [Axios](https://github.com/axios/axios)
+- [React-hook-form](https://react-hook-form.com/)
+- [Yup](https://www.npmjs.com/package/yup)
+- [react-infinite-scroll-component](https://www.npmjs.com/package/react-infinite-scroll-component)
 
 ## Rodando a aplicação
 
