@@ -1,10 +1,5 @@
 # Petwitter - Frontend - Versão incial
 
-
-Esse boilerplate deve ser utilizado para realizar o desafio final do curso WEB Developer da Otterwise, mas também pode ser usado para criar qualquer aplicação SPA, pois é baseado no [Create React APP](https://create-react-app.dev/).
-
-O boilerplate também conta uma integração de autenticação com o [boilerplate de back-end da Otterwise](https://github.com/OtterwiseCo/boilerplate-back-end) via REST api pré setada.
-
 ## Tecnologias
 
 - [Create react app](https://create-react-app.dev/)

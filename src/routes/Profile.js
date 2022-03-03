@@ -147,7 +147,7 @@ const Profile = () => {
         hasMore={hasMore}
       >
         {filteredPosts &&
-          filteredPosts[0].id &&
+          filteredPosts[0]?.id &&
           filteredPosts.map((el) => {
             return (
               <Post
