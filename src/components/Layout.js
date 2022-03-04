@@ -1,10 +1,8 @@
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { Box, Button, Image, Flex, Text } from "@chakra-ui/react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { Box, Image, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import Menu from "./Menu";
-import { Link as LinkRouter } from "react-router-dom";
 import NewPetweet from "./NewPetweet";
-import styled from "styled-components";
 import CustomLink from "./CustomLink";
 
 function Layout() {

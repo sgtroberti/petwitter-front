@@ -1,11 +1,11 @@
-import { Flex, Box, Image, Text, Link } from "@chakra-ui/react";
-import { useEffect, useState, useMemo } from "react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { format as dateFns } from "date-fns";
+import { useEffect, useMemo, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useLocation, useOutletContext } from "react-router-dom";
+import { format } from "timeago.js";
 import Post from "../components/Post";
 import instance from "../providers/client";
-import { useLocation, useOutletContext } from "react-router-dom";
-import { format as dateFns } from "date-fns";
-import { format } from "timeago.js";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 const Profile = () => {
   function useQuery() {

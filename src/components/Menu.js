@@ -1,20 +1,15 @@
 import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
   Button,
-  Input,
-  useDisclosure,
-  Image,
+  Drawer,
+  DrawerContent,
+  DrawerOverlay,
   Flex,
+  Image,
   Link,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useRef } from "react";
-import { Link as LinkRouter, useNavigate } from "react-router-dom";
+import { Link as LinkRouter } from "react-router-dom";
 
 const Menu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

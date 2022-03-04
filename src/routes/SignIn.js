@@ -1,28 +1,26 @@
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
+  Button,
   Flex,
-  Image,
-  Heading,
-  Text,
   FormControl,
+  FormHelperText,
   FormLabel,
+  Heading,
+  Image,
   Input,
-  Link,
   InputGroup,
   InputRightElement,
-  Button,
-  FormHelperText,
-  FormErrorMessage,
+  Link,
+  Text,
 } from "@chakra-ui/react";
-import styled from "styled-components";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Link as LinkRouter } from "react-router-dom";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useForm } from "react-hook-form";
+import { Link as LinkRouter, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import * as yup from "yup";
 import PetPawIcon from "../components/PetPawnIcon";
 import instance from "../providers/client";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
   name: yup.string().required("Campo obrigatório"),

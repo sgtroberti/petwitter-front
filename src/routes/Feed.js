@@ -1,12 +1,12 @@
+import { Box, Flex, Image } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import Post from "../components/Post";
-import instance from "../providers/client";
-import { format, register } from "timeago.js";
-import pt_BR from "timeago.js/lib/lang/pt_BR";
-import { Flex, Box, Image } from "@chakra-ui/react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useOutletContext } from "react-router-dom";
+import { format, register } from "timeago.js";
+import pt_BR from "timeago.js/lib/lang/pt_BR";
 import NewPetweetDesktop from "../components/NewPetweetDesktop";
+import Post from "../components/Post";
+import instance from "../providers/client";
 register("pt_BR", pt_BR);
 
 const Feed = () => {
