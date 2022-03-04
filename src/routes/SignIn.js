@@ -12,6 +12,7 @@ import {
   InputRightElement,
   Link,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
@@ -41,6 +42,7 @@ function SignIn() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+  const toast = useToast();
 
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -48,6 +50,13 @@ function SignIn() {
 
   const onSubmit = async (data) => {
     await instance.post("/signup", data);
+    toast({
+      title: "Conta Criada!",
+      description: "Petwitte AU vontade!",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
     navigate("/", { replace: true });
   };
 
