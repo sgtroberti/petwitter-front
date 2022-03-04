@@ -94,7 +94,7 @@ const Menu = () => {
               textAlign="center"
               textDecoration="none"
               as={LinkRouter}
-              to="/"
+              to="/conf"
               p="4px"
               mb="8px"
             >

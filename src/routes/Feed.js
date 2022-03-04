@@ -17,7 +17,6 @@ const Feed = () => {
   const [isLoading, setIsLoading] = useOutletContext();
 
   useEffect(() => {
-    console.log("feed page no useEffect que pega os posts: ", feedPage);
     setIsLoading(true);
     const request = async () => {
       const response = await instance.get(`/posts?page=${feedPage}`);
@@ -38,7 +37,6 @@ const Feed = () => {
 
   const fetchMoreData = async () => {
     setIsLoading(true);
-    console.log("feed page no fetch more: ", feedPage);
     hasMore &&
       feedPage === feedPageCount &&
       setHasMore(false) &&

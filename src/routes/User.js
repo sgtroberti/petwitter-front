@@ -22,7 +22,6 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useOutletContext();
 
   useEffect(() => {
-    console.log("profile page no useEffect que pega o usuário: ", page);
     setIsLoading(true);
     const user = query.get("user");
     const request = async () => {
@@ -36,7 +35,6 @@ const Profile = () => {
   }, []);
 
   useEffect(() => {
-    console.log("profile page no useEffect que pega os posts: ", page);
     setIsLoading(true);
     if (foundProfile) {
       const request = async () => {
