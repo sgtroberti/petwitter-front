@@ -33,6 +33,7 @@ const Feed = () => {
       setIsLoading(false);
     };
     request();
+    // eslint-disable-next-line
   }, [feedPage]);
 
   const fetchMoreData = async () => {

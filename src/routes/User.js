@@ -32,6 +32,7 @@ const Profile = () => {
     request();
     setPage(page + 1);
     setIsLoading(false);
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -56,6 +57,7 @@ const Profile = () => {
       };
       request();
     }
+    // eslint-disable-next-line
   }, [page, foundProfile]);
 
   const fetchMoreData = async () => {

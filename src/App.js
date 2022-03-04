@@ -1,14 +1,13 @@
-import { Routes, Route, useSearchParams } from "react-router-dom";
-import { AuthProvider, RequireAuth } from "./context/auth-context";
-import Login from "./routes/Login";
-import Layout from "./components/Layout";
-import SignIn from "./routes/SignIn";
-import Feed from "./routes/Feed";
-import Profile from "./routes/Profile";
-import User from "./routes/User";
-
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import { AuthProvider, RequireAuth } from "./context/auth-context";
+import Feed from "./routes/Feed";
+import Login from "./routes/Login";
+import Profile from "./routes/Profile";
 import Settings from "./routes/Settings";
+import SignIn from "./routes/SignIn";
+import User from "./routes/User";
 
 const theme = extendTheme({
   fonts: {
