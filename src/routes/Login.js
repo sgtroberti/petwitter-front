@@ -24,13 +24,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
   email: yup.string().required("Campo obrigatório"),
-  password: yup
-    .string()
-    .required("Campo obrigatório")
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
-      "Deve conter 8 caracteres, uma letra maiúscula, uma minúscula e um número"
-    ),
+  password: yup.string().required("Campo obrigatório"),
 });
 
 function Login() {
@@ -49,8 +43,12 @@ function Login() {
   const from = location.state?.from?.pathname || "/";
 
   async function onSubmit(data) {
-    await signin(data);
-    navigate(from, { replace: true });
+    try {
+      const login = await signin(data);
+      login && navigate(from, { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -123,6 +121,9 @@ function Login() {
               focusBorderColor="cyan.400"
               p="8px"
             />
+            {errors.email && (
+              <FormHelperText>{errors.email.message}</FormHelperText>
+            )}
           </FormControl>
           <FormControl>
             <Flex alignItems="center" justifyContent="space-between" pt="32px">
