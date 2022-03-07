@@ -21,6 +21,7 @@ import PetPawIcon from "../components/PetPawnIcon";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useToast } from "@chakra-ui/react";
 
 const schema = yup.object().shape({
   email: yup.string().required("Campo obrigatório"),
@@ -39,15 +40,22 @@ function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const { signin } = useAuth();
+  const toast = useToast();
 
   const from = location.state?.from?.pathname || "/";
 
   async function onSubmit(data) {
     try {
-      (await signin(data))
-        ? navigate(from, { replace: true })
-        : console.log("deu ruim");
-    } catch (error) {}
+      await signin(data);
+      navigate(from, { replace: true });
+    } catch (error) {
+      toast({
+        description: "Usuário ou senha errados",
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+      });
+    }
   }
 
   return (
