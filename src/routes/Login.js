@@ -44,11 +44,10 @@ function Login() {
 
   async function onSubmit(data) {
     try {
-      const login = await signin(data);
-      login && navigate(from, { replace: true });
-    } catch (error) {
-      console.log(error);
-    }
+      (await signin(data))
+        ? navigate(from, { replace: true })
+        : console.log("deu ruim");
+    } catch (error) {}
   }
 
   return (
